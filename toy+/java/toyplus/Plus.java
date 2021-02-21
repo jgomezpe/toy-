@@ -4,12 +4,12 @@ import funpl.semantic.FunCommand;
 import funpl.semantic.FunMachine;
 
 public class Plus extends FunCommand{
-    public Plus(int pos, String src) {
-	super(pos, src, null);
+    public Plus(FunMachine machine) {
+	super(machine);
     }
 
-    public Plus(int pos, String src, FunMachine machine) {
-	super(pos, src, machine);
+    public Plus() {
+	super();
     }
 
     @Override

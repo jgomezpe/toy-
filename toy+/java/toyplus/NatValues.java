@@ -1,6 +1,7 @@
 package toyplus;
 
 import funpl.semantic.FunValueInterpreter;
+import lifya.lexeme.Lexeme;
 
 public class NatValues implements FunValueInterpreter{
 
@@ -25,5 +26,8 @@ public class NatValues implements FunValueInterpreter{
     }
 
     @Override
-    public String regex() { return "\\d+"; }
+    public Lexeme<?> lexeme() {
+	return new NatLexeme();
+    }
+
 }

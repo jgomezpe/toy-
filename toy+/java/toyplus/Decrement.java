@@ -5,12 +5,13 @@ import funpl.semantic.FunMachine;
 
 public class Decrement extends FunCommand{
 
-    public Decrement(int pos, String src, FunMachine machine) {
-	super(pos, src, machine);
+    public Decrement(FunMachine machine) {
+	super(machine);
     }
 
-    public Decrement(int pos, String src) {
-	super(pos, src, null);
+    
+    public Decrement() {
+	super();
     }
 
     @Override
