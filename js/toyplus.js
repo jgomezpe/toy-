@@ -1,11 +1,11 @@
 /**
 *
-* toyplus_wrap.js
-* <P>Java Script for Quilt programming language.</P>
-* <P>Includes base64.js, kompari.js, lifya.js, jxon.js, and funpl.js (funpl_wrap.js)</P>
+* toyplus.js
+* <P>Java Script for ToyPlus language.</P>
+* <P>A numtseng module <A HREF="https://numtseng.com/modules/toyplus.js">https://numtseng.com/modules/toyplus.js</A> 
 *
 * Copyright (c) 2021 by Jonatan Gomez-Perdomo. <br>
-* All rights reserved. See <A HREF="https://github.com/jgomezpe/lifya">License</A>. <br>
+* All rights reserved. See <A HREF="https://github.com/jgomezpe/toyplus">License</A>. <br>
 *
 * @author <A HREF="https://disi.unal.edu.co/~jgomezpe/"> Professor Jonatan Gomez-Perdomo </A>
 * (E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A> )
@@ -279,8 +279,6 @@ class Position{
 	return {"input":this.input.id, "start":this.start,
 		"row":pos[0], "column":pos[1]}
     }
-    
-    stringify(){ return JSON.stringify(this.json()) }
 }
 
 class Token extends Position{    
@@ -330,7 +328,7 @@ class Read {
         if( typeof input === 'string' )
             input = new Source(input)
         var t = this.match(input,start,end)
-        if(t.isError()) throw t.stringify()
+        if(t.isError()) throw JSON.stringify(t.json())
         return t.value
     }
 
@@ -1692,6 +1690,7 @@ class FunValueInterpreter {
     get(value){}
     valid(value){}
     description(){}
+    lexeme(){}
 }
 
 class FunMachine{
@@ -1871,7 +1870,7 @@ class FunAPI extends Configurable{
     config(jxon) {
         this.clear()
         this.filetype = jxon[GUIFunConstants.FMP]
-        this.conftype = jxon[GUIFunConstants.FMC]
+        this.conftype = jxon.string[GUIFunConstants.FMC]
         if( jxon[FunConstants.NUMBERID] !== undefined )
             this.canStartWithNumber = jxon[FunConstants.NUMBERID]
     }   
@@ -1915,7 +1914,7 @@ class FunAPI extends Configurable{
     }
     
     lexer() {
-        return new FunLexer(this.canStartWithNumber, this.value.lexeme, this.primitive_lexeme()) 
+        return new FunLexer(this.canStartWithNumber, this.value.lexeme(), this.primitive_lexeme()) 
     }
     
     init() {
@@ -1962,22 +1961,23 @@ class FunAPI extends Configurable{
 
 ////////// GUI //////////////
 class Application extends Configurable{    
-    constructor(id, program, command, console, render, api, i18n){ 
+    constructor(id, program, command, console, render, api){ 
         super()
         this.id = id
         this.api = api
         this.program = program
         this.command = command
         this.render = render
-        this.console = console   
-        if(i18n === undefined )
-            i18n = function(code){ return code }
-        this.i18n = i18n
+        this.console = console    
     }
   
+    i18n(code){
+        // Konekti gets in
+         return code // I18N.process(code)
+    }
+ 
     error(msg) {
         try {
-        console.log(msg)
             var json = JXON.parse(msg)
             var pos = json[Position.START]
             var end = json[Token.END] || pos+1
@@ -2049,6 +2049,85 @@ class Application extends Configurable{
     }
 }
 
+////////// TEST //////////////
+
+class TestLexeme extends Lexeme{
+    constructor(){
+        super()
+        this.type = FunConstants.VALUE
+    }
+    
+    match(input, start, end) {
+        start = start || 0
+        end = end || input.length
+        if(typeof input === 'string') input = new Source(input)        
+        if(!this.startsWith(input.get(start))) return this.error(input,start,start+1)
+        var e=start+1
+        while(e<end && this.startsWith(input.get(e))) e++
+        return this.token(input,start,e,input.substring(start,e))
+    }
+
+    startsWith(c) {
+        return c=='-' || c=='/' || c=='<' || c=='_';
+    }
+}     
+
+SyntaxTest = {
+    value(){ return new TestLexeme() },
+
+    primitive(){ return new Words(FunConstants.PRIMITIVE, ["@","|"] ) },
+
+    primitive2(){ return new Words(FunConstants.PRIMITIVE, ["@","|","+"] ) },
+    
+    lexer() {
+        var code = "% Hello World\n   //<<|rot(X)"
+        lexer = new FunLexer(true, SyntaxTest.value(), SyntaxTest.primitive())
+        try {
+            console.log(code)
+            var tokens = lexer.get(code)
+            for( var i=0; i<tokens.length; i++ ) console.log(tokens[i])
+        } catch (e) {
+            console.error(e)
+        }
+    },
+
+    print( tab, t ) {
+        var s = ''
+        var obj = t.value
+        for( var k=0; k<tab; k++ ) 
+            s += ' '
+        
+        if( Array.isArray(obj) ) {
+            s += t.type
+            console.log(s)
+            for( var i=0; i<obj.length; i++ ) {
+                this.print(tab+1, obj[i])
+            }
+        }else {
+            console.log(s+obj)
+        }
+    },
+    
+    parser() {
+        var code = "% Hello World\n0  = <\n1=@(<)|rot(X,Y)|@(Z)+<|Z";
+        var lexer = new FunLexer(true, SyntaxTest.value(), SyntaxTest.primitive2());
+        var opers = {"@":[1, 10],"|":[2, 1],"+":[2, 2]}
+        parser = new FunParser(opers,FunConstants.DEF_LIST)
+        try {
+            lexer.init(code)
+            t = parser.analize(lexer)
+            SyntaxTest.print(0,t)
+        } catch (e) {
+            console.error(e)
+        } 
+    },
+
+    main() {
+        SyntaxTest.lexer() // Uncomment to test the lexer
+        SyntaxTest.parser() // Uncomment to test the parser
+    }
+}
+
 ///////// Toy+ //////////
 
 class ToyPlusAssignment extends FunAssignment{
@@ -2100,10 +2179,6 @@ class NatLexeme extends Lexeme{
 }
 
 class NatValues extends FunValueInterpreter{
-	constructor(){
-	 super() 
-	 this.lexeme = new NatLexeme()
-	}
     get(value) { return Number.parseInt(value) }
 
     valid(value) {
@@ -2111,6 +2186,8 @@ class NatValues extends FunValueInterpreter{
     }
 
     description() { return "·Natural numbers·" }
+
+    lexeme() { return new NatLexeme() }
 }
 
 class Plus extends FunCommand{
@@ -2154,26 +2231,6 @@ class Plus extends FunCommand{
     }
 }
 
-class ToyPlusAPI extends FunAPI{
-	constructor(jxon) {
-		super()			
-       	this.canStartWithNumber=false
-		this.config(jxon)
-	}
-    
-	config(jxon) {
-		super.config(jxon)
-		this.value = new NatValues()
-		this.machine.value = this.value
-		this.assignment = new ToyPlusAssignment()
-		var opers = jxon.commands
-		for( var i=0;i<opers.length; i++ ) {
-			if( opers[i]=="+" ) this.addOperator(new Plus(), 1)
-			else if( opers[i] == "¬" ) this.addOperator(new Decrement(), 2)
-		}
-	}
-}
-
 ToyPlus = {
     print( tab, t ) {
         var s = ''
@@ -2193,7 +2250,12 @@ ToyPlus = {
     },
 
     load(decrement) {
-       return new ToyPusAPI(decrement)    
+        var api = new FunAPI()
+        api.value = new NatValues()
+        api.assignment = new ToyPlusAssignment()
+        api.addOperator(new Plus(), 1)
+        if( decrement ) api.addOperator(new Decrement(), 2)
+        return api    
     },
 
     usingAPI() {

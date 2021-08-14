@@ -1,6 +1,6 @@
 package toyplus;
 
-import aplikigo.gui.awt.AWTStringRender;
+import aplikigo.awt.AWTStringRender;
 import funpl.gui.awt.ProgrammingFrame;
 
 public class IDE {
