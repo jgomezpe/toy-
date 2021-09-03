@@ -1,8 +1,8 @@
 package toyplus;
 
 import funpl.FunAPI;
-import aplikigo.gui.canvas.Util;
-import jxon.JXON;
+import aplikigo.gui.canvas.CanvasConstants;
+import speco.jxon.JXON;
 
 public class API extends FunAPI{
     @Override
@@ -12,7 +12,7 @@ public class API extends FunAPI{
 	value = new NatValues();
 	this.setValue(value);
 	this.setAssignment(new Assignment());
-	Object[] opers = jxon.array(Util.COMMANDS);
+	Object[] opers = jxon.array(CanvasConstants.COMMANDS);
 	for( Object obj:opers ) {
 	    String o = (String)obj;
 	    if( o.equals("¬") ) addOperator(new Decrement(), 3);

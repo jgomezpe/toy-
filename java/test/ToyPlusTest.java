@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import funpl.FunAPI;
 import funpl.lexer.FunLexer;
+import funpl.lexer.Function;
 import funpl.semantic.FunCommand;
 import funpl.semantic.FunMachine;
 import funpl.semantic.FunMeaner;
@@ -63,8 +64,8 @@ public class ToyPlusTest {
 	
 	public static void stepByStep() {
 	    System.out.println("==============================");
-	    String code = "% Hello World\ndec(X)=¬(X)\nsum(5+X,Y)=X+Y";
-	    FunLexer lexer = new FunLexer(false, new NatLexeme(), new Words(FunConstants.PRIMITIVE,new String[]{"¬","+"}));
+	    String code = "% Hello World\ndec(X)=¬(X)\nswap(X,Y)=Y,X";
+	    FunLexer lexer = new FunLexer(new Function(true,false), new NatLexeme(), new Words(FunConstants.PRIMITIVE,new String[]{"¬","+"}));
 	    HashMap<String, int[]> opers = new HashMap<String, int[]>();
 	    opers.put("¬", new int[] {1, 10});
 	    opers.put("+", new int[] {2, 2});
@@ -80,12 +81,12 @@ public class ToyPlusTest {
 	    try {
 		System.out.println(code);
 		lexer.init(code);
-		Token t = parser.analize(lexer);
+		Token t = parser.analyze(lexer);
 		print(0,t);
 		FunProgram p = (FunProgram)meaner.apply(t).value();
 		System.out.println(p);
-		Integer result = (Integer)p.execute("sum", new Object[] {10,23});
-		System.out.println("Result:"+result);
+		Object[] result = (Object[])p.execute("swap", new Object[] {10,23});
+		System.out.println("Result:"+result[0]+"..."+result[1]);
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
