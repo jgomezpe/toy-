@@ -9,17 +9,17 @@ For compiling the Java version, the following libraries are required: kerno.jar,
 
 &nbsp;These are available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
 
-&nbsp;A Java IDE for programming in Toy+ is available at: <A HREF="https://github.com/jgomezpe/toyplus/run/toyplus.jar">https://github.com/jgomezpe/toyplus/run/toyplus.jar</A>
+&nbsp;A Java IDE for programming in Toy+: <A HREF="https://github.com/jgomezpe/toyplus/run/toyplus.jar">https://github.com/jgomezpe/toyplus/run/toyplus.jar</A>
 
 ## Javascript
 
-For interpreting the Javascript version, the following mosules are required: kompari.js, lifya.js, jxon.js, funpl.js and Konekti.js
+For interpreting the Javascript version, the following mosules are required: kompari.js, lifya.js, jxon.js, funpl.js and konekti.js
 
-A wrap version (including all required modules and Toy+ classes) is also available <A HREF="https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js">https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js</A> 
+A wrap version (including all required modules and Toy+ classes): <A HREF="https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js">https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js</A> 
 
-&nbsp;A web IDE for programming in Toy+ is also available: <A HREF="https://jgomezpe.github.io/toyplus/">https://jgomezpe.github.io/toyplus/</A>
+&nbsp;A web IDE for programming in Toy+: <A HREF="https://jgomezpe.github.io/toyplus/">https://jgomezpe.github.io/toyplus/</A>
 
-&nbsp;A web course for learning (under construction) to program in Toy+ is available: <A HREF="https://numtseng.com/toyplus/">https://numtseng.com/toyplus/</A>
+&nbsp;A web course for learning (under construction) to program in Toy+: <A HREF="https://numtseng.com/toyplus/">https://numtseng.com/toyplus/</A>
 
 <h3>Version 1.0</h3>
 <h3>Copyright (c)</h3>
