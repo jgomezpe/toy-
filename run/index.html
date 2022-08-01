@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="mobile-web-app-capable" content='yes'>
+	<title>Toy+ Programing Language</title>
+	<script type='text/javascript' src='https://jgomezpe.github.io/konekti/src/konekti.js'></script> 
+	<script type='text/javascript' src='https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js'></script> 
+</head>
+
+<body>
+
+	<script>
+	Konekti.uses( 'header', 'canvas', 'https://jgomezpe.github.io/funpl/src/js/funplIDE.js')
+
+	function KonektiMain(){
+		var lang = Konekti.dom.getUserLanguage()
+
+		var callback = function(toy_json){ 
+			if(toy_json===undefined || toy_json===null){
+				lang = 'en'
+				Konekti.resource.JSON('https://jgomezpe.github.io/toyplus/i18n/'+lang+'/json/toyplus.json', callback)
+			}else{
+				Konekti.resource.JSON('https://jgomezpe.github.io/toyplus/cfg/basic.tmc', function(json){
+					document.title = toy_json.Title
+					Konekti.header('title','fa-th',toy_json.Title,3,'w3-deep-orange w3-center')
+					var toy = Konekti.funpl('ToyPlus', '100%', 'rest', "col", json.editor.mode, json.editor.code, new ToyPlusAPI(json.fun),
+						Konekti.divConfig('ToyPlusRender','100%','100%','',''))
+					toy.render = function(obj){ Konekti.client['ToyPlusRender'].setText(obj) }
+					Konekti.header('footer','fa-edit',toy_json.developed,4,'w3-deep-orange w3-center')
+					Konekti.resize()
+				})
+			}
+		}
+
+		Konekti.resource.JSON('https://jgomezpe.github.io/toyplus/i18n/'+lang+'/json/toyplus.json', callback)
+	}
+	</script>
+</body>
+</html>
