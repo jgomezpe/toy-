@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="mobile-web-app-capable" content='yes'>
+	<title>Toy+ Programming Language</title>
+	<script type='text/javascript' src='https://jgomezpe.github.io/konekti/src/konekti.js'></script>
+	<script type='text/javascript' src='https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js'></script> 
+</head>
+
+<body>
+
+	<script>
+
+		Konekti.uses( 'accordion', 'sidebar', 'header', 'canvas', 'dropdown', 'split', 'https://jgomezpe.github.io/funpl/src/js/funplIDE.js')
+
+		class KMain extends Client{
+			constructor(lang){
+				super('client')
+				this.page = ''
+				this.lang = lang
+			}
+
+			select(page){
+				if( page == 'IDE' ) window.open("https://github.com/jgomezpe/toyplus/run/?lang="+this.lang)
+				else if( page == 'github' ) window.open("https://github.com/jgomezpe/toyplus/")
+				else if( page == 'language' ){}
+				else if( page.startsWith('lang-') ) this.language(page.substring(5))
+				else if( this.page != page ){			
+					this.page = page
+					Konekti.dom.setURLSearchParam('page',page)
+					Konekti.dom.setURLSearchParam('lang',this.lang)
+					var url = 'https://github.com/jgomezpe/toyplus/i18n/'+this.lang+'/json/'+page+'.json'
+					Konekti.resource.JSON(url, function(json){
+						console.log(json.coder)
+						Konekti.client['ToyPlusCoder'].setText(json.coder) 
+						Konekti.client['ToyPlusCommand'].setText(json.command) 
+						Konekti.client['info'].setText(json.info)
+					})
+				}
+			}
+
+			language(lang){
+				if( lang != this.lang ) window.open("https://github.com/jgomezpe/toyplus/index.html?lang="+lang+"&page="+this.page,"_self")
+			}
+		}
+
+		function KonektiMain(){
+			var lang = Konekti.dom.getUserLanguage()
+
+			var callback = function(toy_json){ 
+				if(toy_json===undefined || toy_json===null){
+					lang = 'en'
+					Konekti.resource.JSON('https://github.com/jgomezpe/toyplus/i18n/'+lang+'/json/toyplus.json', callback)
+				}else{
+					var client = new KMain(lang)
+					var toc = Konekti.tocConfig(toy_json.toc, 4, '', {'client':'client', 'method':'select'},true)
+
+					Konekti.resource.JSON('https://github.com/jgomezpe/toyplus/cfg/basic.tmc', function(json){
+						document.title = toy_json.Title
+						var info = Konekti.divConfig('info', '100%', '20%', "style='padding:8px;overflow:auto'", '')
+						var toy = Konekti.funplConfig('ToyPlus', '100%', 'rest', "col", json.editor.mode, json.editor.code, new ToyPlusAPI(json.fun),
+							Konekti.divConfig('ToyPlusRender','100%','100%','',''))
+						var main = Konekti.splitConfig('main', '100%', '100%', 'row', '20', info, toy)
+
+						Konekti.sidebar('root', '100%', '100%', toc, main)	
+
+						toy = Konekti.client['ToyPlus'] 
+						toy.render = function(obj){ Konekti.client['ToyPlusRender'].setText(obj) }
+						Konekti.client['ToyPlus'].msg = toy_json 
+						Konekti.resize()
+						var page = Konekti.dom.getURLSearchParam('page', 'home')
+						client.select(page)
+					})
+				}
+			}
+
+			Konekti.resource.JSON('https://github.com/jgomezpe/toyplus/i18n/'+lang+'/json/toyplus.json', callback)
+			
+		}		
+	</script>
+</body>
+</html>
