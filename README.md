@@ -1,33 +1,30 @@
-# toyplus
-Java/Javascript implementation of the Toy+ language. Toy+ is a simple but powerful programming language (of the FunPL family) developed by professor Jonatan Gómez, Universidad Nacional de Colombia - South America, for teaching to think algorithmic solutions instead of teaching to code. In Toy+ you have just natural numbers and the basic operation addition that can be used to define (in the programming area) new commands. With those new compiled commands, it is hoped that arithmetic operations that the programmer's imagination defines can be built (running those in the command area).
-Also, Quilts teaches math, logic, and programming concepts without the classical nomenclature, which facilitates their adquisition.
+# Toy+
+Toy+ is a simple but powerful programming language (of the <A HREF="https://github.com/jgomezpe/funpl/">FunPL</A> class) developed by professor Jonatan Gómez, Universidad Nacional de Colombia - South America, for teaching to think algorithmic solutions instead of teaching to code. In Toy+ you have just natural numbers and the basic operation addition that can be used to define (in the programming area) new commands. With those new compiled commands, it is hoped that arithmetic operations that the programmer's imagination defines can be built (running those in the command area).
 
-&nbsp;Java components require:
+Thre are two different implementations of Toy+: using Java and using Javascript:
 
-&nbsp;kerno.jar, speco.jar, kompari.jar, lifya.jar, jxon.jar, funpl.jar, aplikigo.jar and rsyntaxtextarea-3.0.0-SNAPSHOT.jar
+## Java
 
-&nbsp;Available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
+For compiling the Java version, the following libraries are required: kerno.jar, speco.jar, kompari.jar, lifya.jar, jxon.jar, funpl.jar, aplikigo.jar and rsyntaxtextarea-3.0.0-SNAPSHOT.jar
 
-&nbsp;Javascript components require:
+&nbsp;These are available at <A HREF="https://github.com/jgomezpe/libs/">https://github.com/jgomezpe/libs/</A>
 
-&nbsp;kompari.js, lifya.js, jxon.js, funpl.js and Konekti.js
+&nbsp;A Java IDE for programming in Toy+ is available at: <A HREF="https://github.com/jgomezpe/toyplus/run/toyplus.jar">https://github.com/jgomezpe/toyplus/run/toyplus.jar</A>
 
-&nbsp;Available at <A HREF="https://numtseng.com/modules/">https://numtseng.com/modules/</A> and <A HREF="https://numtseng.com/modules/konekti/">https://numtseng.com/modules/konekti</A>
+## Javascript
+
+For interpreting the Javascript version, the following mosules are required: kompari.js, lifya.js, jxon.js, funpl.js and Konekti.js
+
+A wrap version (including all required modules and Toy+ classes) is also available <A HREF="https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js">https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js</A> 
+
+&nbsp;A web IDE for programming in Toy+ is also available: <A HREF="https://jgomezpe.github.io/toyplus/">https://jgomezpe.github.io/toyplus/</A>
+
+&nbsp;A web course for learning (under construction) for programming in Toy+ is available: <A HREF="https://numtseng.com/toyplus/">https://numtseng.com/toyplus/</A>
 
 <h3>Version 1.0</h3>
 <h3>Copyright (c)</h3>
 &nbsp;Author: <A HREF="https://disi.unal.edu.co/~jgomezpe/"> Jonatan Gomez-Perdomo </A>
 &nbsp;E-mail: <A HREF="mailto:jgomezpe@unal.edu.co">jgomezpe@unal.edu.co</A>
-
-&nbsp;Java IDE ready to use: <A HREF="https://github.com/jgomezpe/toyplus/run/toyplus.jar">https://github.com/jgomezpe/toyplus/run/toyplus.jar</A>
-
-&nbsp;Javascript (web) ready to use: <A HREF="https://numtseng.com/toyplus/">https://numtseng.com/toyplus/</A>
-
-&nbsp;Java/Javascript source code: <A HREF="https://github.com/jgomezpe/modules/toyplus.js">https://github.com/jgomezpe/modules/toyplus.js</A>, and <A HREF="https://github.com/jgomezpe/modules/toyplus_wrap.js">https://github.com/jgomezpe/modules/toyplus_wrap.js</A>
-
-&nbsp;Java API documentation: <A HREF="https://numtseng.com/api/toyplus/java/">https://numtseng.com/api/toyplus/java/</A>
-
-&nbsp;Javascript API documentation: <A HREF="https://numtseng.com/api/toyplus/">https://numtseng.com/api/toyplus/</A>
 
 &nbsp;All rights reserved.
 
