@@ -1,0 +1,14 @@
+{
+  "Title":"Toy+ : An example of a FunPL Language",
+  "developed":"Developed by professor Jonatan Gomez",
+  "+":"%Adds to natural numbers",
+  "¬":"%Reduce in one, if possible, a natural number. ¬5 = 4, ¬10=9, ¬0 is not possible",
+  "toc":{ "id": "home", "caption":"Home", "client":"client", "width":"100%", "children":[
+    {"id":"language", "icon":"fa-language", "caption": "Language", "children":[
+      {"id":"lang-es", "caption":"Español"}, {"id":"lang-en", "caption":"English"}
+    ]},
+    {"id":"IDE", "icon":"fa-desktop", "caption": "IDE"},
+    {"id":"github", "caption": "Source code", "icon":"fa-github"}
+  ]},
+  "language":"Language"  
+}
