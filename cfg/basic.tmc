@@ -1,0 +1,29 @@
+{
+  "fun":{
+     "commands":["+"],
+     "type":".toy",
+     "config":".tmc"
+  },
+  "render":{"initial":""},
+  "editor":{ "theme":"eclipse","mode":"toyplus",
+		"code":	{ 
+			"mode":"toyplus", 
+			"qName":"ToyPlus", 
+			"fileTypes":["tmq", "toy"],
+			"tokens":{
+				"start":[
+					{ "token": "variable.parameter.prolog", "regex": "\\b[A-Z$]\\w*\\b" },
+					{ "token": "paren.lparen", "regex" : "[\\(]"},	
+					{ "token": "paren.rparen", "regex" : "[\\)]"},
+					{ "token": "punctuation.separator.parameters.prolog", "regex": "," },
+					{ "token": "keyword.operator.definition", "regex": "="},
+					{ "token": "keyword.operator.prolog", "regex": "[+]"},
+					{ "token": "comment.line.percentage.prolog", "regex": "(%)(.*$)"  },
+					{ "token": "constant.numeric", "regex": "\\bd+\\b" },
+					{ "token": "entity.name.function.fact.prolog", "regex": "\\b[a-z][a-zA-Z0-9_]*\\b" },
+					{ "token": "text", "regex": "[^\\s]" } 
+				]
+			}
+		}
+	}
+}
