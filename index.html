@@ -24,6 +24,7 @@
 
 			select(page){
 				if( page == 'IDE' ) window.open("https://jgomezpe.github.io/toyplus/run/?lang="+this.lang)
+				else if( page == 'java' ) window.open("https://jgomezpe.github.io/toyplus/run/toyplus.jar", "_parent", "download")
 				else if( page == 'github' ) window.open("https://github.com/jgomezpe/toyplus/")
 				else if( page == 'language' ){}
 				else if( page.startsWith('lang-') ) this.language(page.substring(5))
