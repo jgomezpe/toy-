@@ -2065,40 +2065,6 @@ class Application extends Configurable{
     }
 }
 
-///////// Quilt //////////
-QuiltConstants = {
-    BORDER : "_",
-    SPANISH : "spanish",
-    ENGLISH : "english",
-    ERROR : "error",
-    ROTATE : "rotate",
-    UNROTATE : "unrotate",
-    STITCH : "Stitch",
-    UNSTITCH : "Unstitch",
-    OUT : "out",
-    QUILT : "Quilt",
-    REMNANT : "Remnant",
-    PRIMITIVE : "primitive",
-    NONAME : "noname",
-    CLEAN : "clean",
-    NEW : "new",
-    OPEN : "open",
-    SAVE : "save",
-    COMPILE : "compile",
-    EXECUTE : "execute",
-    COMMAND : "command",
-    TITLE : "title",
-    FILE : "file",
-    NO_ERRORS : "no_errors",
-    ERRORS : "errors",
-    AUTHOR : "author", 
-    MACHINE : "machine",
-    STYLE : "style",     
-    QMC : ".qmc",        
-    QMP : ".qmp",        
-    QMS : ".qms"        
-}
-
 ///////// Toy+ //////////
 
 class ToyPlusAssignment extends FunAssignment{
