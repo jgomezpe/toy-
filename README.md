@@ -17,9 +17,9 @@ For interpreting the Javascript version, the following modules are required: kom
 
 A wrap version (including all required modules and Toy+ classes): <A HREF="https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js">https://jgomezpe.github.io/toyplus/src/js/toyplus_wrap.js</A> 
 
-&nbsp;The github course for learning to program in Toy+: <A HREF="https://jgomezpe.github.io/numtseng/toyplus/">https://jgomezpe.github.io/numtseng/toyplus/</A>
+&nbsp;The github version of the course for learning to program in Toy+: <A HREF="https://jgomezpe.github.io/numtseng/toyplus/">https://jgomezpe.github.io/numtseng/toyplus/</A>
 
-&nbsp;The official web course for learning to program in Toy+: <A HREF="https://numtseng.com/toyplus/">https://numtseng.com/toyplus/</A>
+&nbsp;The official website of the course for learning to program in Toy+: <A HREF="https://numtseng.com/toyplus/">https://numtseng.com/toyplus/</A>
 
 <h3>Version 1.0</h3>
 <h3>Copyright (c)</h3>
